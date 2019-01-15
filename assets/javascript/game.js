@@ -6,6 +6,9 @@ var previous = 0;
 
 var resetAndStart = function(){
   $('.crystals').empty();
+
+var images = ['unit-4-game/assets/images/images.jpeg', 'unit-4-game/assets/images/images 33.jpeg', 'unit-4-game/assets/images/images (2).jpeg', 'unit-4-game/assets/images/images (1).jpeg'];
+
   randomResult = Math.floor(Math.random() * 69 ) +30;
   //console.log("test");
   $('#result').html("Random Result: " + randomResult);
@@ -19,7 +22,13 @@ var resetAndStart = function(){
       "class": 'crystal',
       'data-random': random
     });
-    crystal.html(random);
+    //crystal.html(random);
+    crystal.css({
+      "background-image":"url('"
++ images[i] + "')",
+      "background-size":"cover"
+    });
+
     $('.crystals').append(crystal);
   }
   $("#previous").html("Total Score: " + previous);
