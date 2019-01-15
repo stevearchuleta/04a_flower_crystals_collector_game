@@ -5,7 +5,7 @@ var wins = 0;
 var previous = 0;
 
 var resetAndStart = function(){
-  $('#crystals').empty();
+  $('.crystals').empty();
   randomResult = Math.floor(Math.random() * 69 ) +30;
   //console.log("test");
   $('#result').html("Random Result: " + randomResult);
@@ -22,7 +22,9 @@ var resetAndStart = function(){
     crystal.html(random);
     $('.crystals').append(crystal);
   }
+  $("#previous").html(previous);
 }
+
 //invoke the function when the page loads
 resetAndStart();
 
@@ -41,7 +43,7 @@ resetAndStart();
     $('#losses').html(losses);
     //console.log("You lost!");
     previous = 0;
-    $("#previous").html(previous);
+    //$("#previous").html(previous);
     resetAndStart();
     
   }
@@ -49,7 +51,7 @@ resetAndStart();
     wins++;
     $('#wins').html(wins);
     previous = 0;
-    $("# previous").html(previous);
+    //$("# previous").html(previous);
     resetAndStart();
     
     //console.log ('You win!');
