@@ -4,14 +4,21 @@ var losses = 0;
 var wins = 0;
 var previous = 0;
 
-var resetAndStart = function(){
+var images = ['assets/images/crystal-flower-1.jpg',
+              'assets/images/crystal-flower-3.png',
+              'assets/images/crystal-flower-2.png',
+              'assets/images/crystal-flower-3.jpeg',];
+
+var resetAndStart = function() {
   $('.crystals').empty();
 
-var images = ['unit-4-game/assets/images/images.jpeg', 'unit-4-game/assets/images/images 33.jpeg', 'unit-4-game/assets/images/images (2).jpeg', 'unit-4-game/assets/images/images (1).jpeg'];
 
+//<img src="../images/images.jpeg">
+
+//apppend this image to the dom
   randomResult = Math.floor(Math.random() * 69 ) +30;
   //console.log("test");
-  $('#result').html("Random Result: " + randomResult);
+  $('#result').html("Your Target Number: " + randomResult);
 
     for(var i=0; i < 4; i++){
     var random = Math.floor(Math.random()* 11) +1;
@@ -22,7 +29,7 @@ var images = ['unit-4-game/assets/images/images.jpeg', 'unit-4-game/assets/image
       "class": 'crystal',
       'data-random': random
     });
-    //crystal.html(random);
+    crystal.html(random);
     crystal.css({
       "background-image":"url('"
 + images[i] + "')",
@@ -34,8 +41,10 @@ var images = ['unit-4-game/assets/images/images.jpeg', 'unit-4-game/assets/image
   $("#previous").html("Total Score: " + previous);
 }
 
-//invoke the function when the page loads
+//invoke the reset function when the page loads
 resetAndStart();
+
+
 
 //event delegation (ask Uzair)
   $(document).on('click', ".crystal", function(){
@@ -44,7 +53,7 @@ resetAndStart();
 
   previous += num;
 
-  $("#previous").html("Total Score: " + previous);
+  $("#previous").html("Your Total Score: " + previous);
   //console.log(previous)
 
   if (previous > randomResult){

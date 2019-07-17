@@ -1,4 +1,8 @@
 
+.jumbotron {
+  background: url(../css/../images/circuit.png);
+}
+
 .crystals{
   display: flex;
   justify-content: space-around;
@@ -13,4 +17,16 @@
 }
 img{
   width: 50px;
+}
+
+body {
+  background: darkgray;
+}
+
+span {
+  font-family: fantasy, Arial, Helvetica, sans-serif
+}
+
+#instructions {
+  text-align: center;
 }
