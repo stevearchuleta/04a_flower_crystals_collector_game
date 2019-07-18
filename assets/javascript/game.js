@@ -2,77 +2,92 @@
 var randomResult;
 var losses = 0;
 var wins = 0;
-var previous = 0;
+var score = 0;
 
 var images = ['assets/images/crystal-flower-1.jpg',
               'assets/images/crystal-flower-3.png',
               'assets/images/crystal-flower-2.png',
               'assets/images/crystal-flower-3.jpeg',];
 
+
 var resetAndStart = function() {
+  // ensure that crystals div is empty of any data
   $('.crystals').empty();
 
-
-//<img src="../images/images.jpeg">
-
-//apppend this image to the dom
+  // generate target number
   randomResult = Math.floor(Math.random() * 69 ) +30;
-  //console.log("test");
   $('#result').html("Your Target Number: " + randomResult);
 
-    for(var i=0; i < 4; i++){
-    var random = Math.floor(Math.random()* 11) +1;
-    //console.log(random);
-    var crystal = $('<div>');
-    //give var crytal two attributes via key-value object syntax  
-    crystal.attr({
-      "class": 'crystal',
-      'data-random': random
-    });
-    crystal.html(random);
-    crystal.css({
-      "background-image":"url('"
-+ images[i] + "')",
-      "background-size":"cover"
-    });
+    // loop through 4 crystals
+    for(var i=0; i < 4; i++) {
+      
+      var random = Math.floor(Math.random()* 11) +1;
+      
+      // create a crystal div
+      var crystal = $('<div>');
+      
+      //give crytal two attributes
+      crystal.attr({
+        "class": 'crystal',
+        'data-random': random
+      });
+    
 
-    $('.crystals').append(crystal);
+      // if I want user to see each crystal value, 
+      // then write each random number to each crystal in the DOM
+      // crystal.html(random);
+      
+
+      crystal.css({
+      "background-image": "url('" + images[i] + "')",
+      "background-size": "cover"
+      });
+
+      $('.crystals').append(crystal);
   }
-  $("#previous").html("Total Score: " + previous);
+  
+
+  // write score to DOM
+  $("#score").html("Total Score: " + score);
+
 }
 
-//invoke the reset function when the page loads
-resetAndStart();
+
+  //invoke the reset function when the page loads
+  resetAndStart();
 
 
 
-//event delegation (ask Uzair)
-  $(document).on('click', ".crystal", function(){
+  //on click event
+  $(document).on('click', ".crystal", function() {
 
-  var num = parseInt($(this).attr('data-random'));
+  var number = parseInt($(this).attr('data-random'));
 
-  previous += num;
+  score += number;
+  
+  // write score to DOM
+  $("#score").html("Your Total Score: " + score);
 
-  $("#previous").html("Your Total Score: " + previous);
-  //console.log(previous)
+    if (score > randomResult) {
+      losses--;
+      $('#losses').html("Games Lost: " + losses);
+      
+      // reset score
+      score = 0;
+      // reset game
+      resetAndStart();
+      
+    }
 
-  if (previous > randomResult){
-    losses--;
-    $('#losses').html("You Lost" + losses);
-    //console.log("You lost!");
-    previous = 0;
-    //$("#previous").html(previous);
-    resetAndStart();
-    
-  }
-  else if (previous === randomResult){
-    wins++;
-    $('#wins').html("You won! " + wins);
-    previous = 0;
-    //$("# previous").html(previous);
-    resetAndStart();
-    
-    //console.log ('You win!');
-  }
-    //console.log (preceding);
+    else if (score === randomResult) {
+      wins++;
+      $('#wins').html("Games Won: " + wins);
+       
+      // reset score
+       score = 0;
+       // reset game
+       resetAndStart();
+      
+    }
+
 });     

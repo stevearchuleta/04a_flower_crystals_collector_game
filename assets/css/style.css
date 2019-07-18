@@ -27,6 +27,23 @@ span {
   font-family: fantasy, Arial, Helvetica, sans-serif
 }
 
+#result {
+  font-family: fantasy, Arial, Helvetica, sans-serif
+}
+
+#score {
+  font-family: fantasy, Arial, Helvetica, sans-serif
+}
+
 #instructions {
   text-align: center;
+  background: url(../css/../images/circuit.png);
+}
+
+#game-title {
+  background-color: tan;
+}
+
+p {
+  background-color: tan;
 }
